@@ -1,0 +1,17 @@
+/target
+.idea
+*.iml
+.idea/misc.xml
+
+# files from haarp init that should not be checked in
+/.build_tmp
+/render-docker-compose
+/build-docker-image
+# haarp files end
+.classpath
+.project
+.settings/
+.sonar/
+.scannerwork/
+
+/version.txt
