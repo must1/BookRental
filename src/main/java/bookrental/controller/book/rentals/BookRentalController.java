@@ -1,8 +1,7 @@
-package bookrental.controller.book;
+package bookrental.controller.book.rentals;
 
-import bookrental.model.book.Book;
 import bookrental.model.book.BookRentals;
-import bookrental.service.book.BookRentalService;
+import bookrental.service.book.rentals.BookRentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

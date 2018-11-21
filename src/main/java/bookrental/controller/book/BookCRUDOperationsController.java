@@ -1,18 +1,17 @@
 package bookrental.controller.book;
 
-import bookrental.model.account.User;
 import bookrental.model.book.Book;
-import bookrental.service.book.BookOperationsService;
+import bookrental.service.book.BookCRUDOperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class BookOperationsController {
+public class BookCRUDOperationsController {
 
-    private final BookOperationsService bookOperationsService;
+    private final BookCRUDOperationsService bookOperationsService;
 
     @Autowired
-    public BookOperationsController(BookOperationsService bookOperationsService) {
+    public BookCRUDOperationsController(BookCRUDOperationsService bookOperationsService) {
         this.bookOperationsService = bookOperationsService;
     }
 
@@ -26,4 +25,8 @@ public class BookOperationsController {
         bookOperationsService.deleteBook(id);
     }
 
+    @PutMapping("/books")
+    public void updateBook(@RequestBody Book updatedBook) {
+        bookOperationsService.updateBook(updatedBook);
+    }
 }

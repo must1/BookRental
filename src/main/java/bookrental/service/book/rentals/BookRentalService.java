@@ -1,4 +1,4 @@
-package bookrental.service.book;
+package bookrental.service.book.rentals;
 
 import bookrental.model.account.User;
 import bookrental.model.book.Book;
@@ -30,7 +30,6 @@ public class BookRentalService {
                 updateBookAvailabilityAndSaveToDb(bookToRent);
                 BookRentals preparedBookToRent = prepareBookToRent(userID, bookID);
                 bookRentalsRepository.save(preparedBookToRent);
-
             } else {
                 throw new IllegalArgumentException("Book is no available");
             }
@@ -53,7 +52,6 @@ public class BookRentalService {
         List<BookRentals> rentedBooks = new ArrayList<>();
         bookRentalsRepository.findAll().forEach(rentedBooks::add);
         return rentedBooks;
-
     }
 }
 

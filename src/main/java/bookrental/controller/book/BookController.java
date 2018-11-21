@@ -22,7 +22,6 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-
     @GetMapping("/books/author/{authorID}")
     public List<Book> findBooksByAuthor(@PathVariable String authorID) {
         return bookService.findBooksByAuthor(authorID);

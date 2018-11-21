@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookOperationsService {
+public class BookCRUDOperationsService {
 
     private final BookRepository bookRepository;
 
     @Autowired
-    public BookOperationsService(BookRepository bookRepository) {
+    public BookCRUDOperationsService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
@@ -21,5 +21,9 @@ public class BookOperationsService {
 
     public void deleteBook(int id) {
         bookRepository.delete(id);
+    }
+
+    public void updateBook(Book updatedBook) {
+        bookRepository.save(updatedBook);
     }
 }
