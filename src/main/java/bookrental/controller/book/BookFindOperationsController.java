@@ -3,17 +3,18 @@ package bookrental.controller.book;
 import bookrental.model.book.Book;
 import bookrental.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public class BookController {
+public class BookFindOperationsController {
 
     private final BookService bookService;
 
     @Autowired
-    public BookController(BookService bookService) {
+    public BookFindOperationsController(BookService bookService) {
         this.bookService = bookService;
     }
 
@@ -38,7 +39,7 @@ public class BookController {
     }
 
     @GetMapping("/books/filter")
-    public List<Book> findBooksByTitleAndAuthorAndCategory(@RequestParam(value = "titleID", required = false) String titleID,@RequestParam(value = "authorID",required = false) String authorID,@RequestParam(value = "categoryID",required = false) String categoryID ) {
-        return bookService.findAllByTitleAndAuthorAndCategoryIgnoreCase(titleID,authorID,categoryID);
+    public List<Book> findBooksByTitleAndAuthorAndCategory(@RequestParam(value = "titleID", required = false) String titleID, @RequestParam(value = "authorID", required = false) String authorID, @RequestParam(value = "categoryID", required = false) String categoryID) {
+        return bookService.findAllByTitleAndAuthorAndCategoryIgnoreCase(titleID, authorID, categoryID);
     }
 }
