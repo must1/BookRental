@@ -5,6 +5,9 @@ import bookrental.service.book.BookCrudOperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @RestController
 public class BookCrudOperationsController {
 
@@ -13,6 +16,11 @@ public class BookCrudOperationsController {
     @Autowired
     public BookCrudOperationsController(BookCrudOperationsService bookOperationsService) {
         this.bookOperationsService = bookOperationsService;
+    }
+
+    @GetMapping("/books")
+    public List<Book> getAllBooks() {
+        return bookOperationsService.getAllBooks();
     }
 
     @PostMapping("/books")

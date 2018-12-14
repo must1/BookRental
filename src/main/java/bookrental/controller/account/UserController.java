@@ -18,20 +18,17 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public void createUser(@RequestBody User newUser) {
-        userService.createUser(newUser);
+    public User createUser(@RequestBody User newUser) {
+        return userService.createUser(newUser);
     }
 
     @DeleteMapping("/user")
-    public void deleteAccount(@RequestParam int id) {
-        userService.deleteAccount(id);
+    public User deleteAccount(@RequestParam int id) {
+        return userService.deleteAccount(id);
     }
 
-    //do testów
     @GetMapping("/user")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
-
-
 }

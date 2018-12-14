@@ -3,6 +3,7 @@ package bookrental.model.book;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -15,8 +16,11 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NotNull
     private String title;
+    @NotNull
     private String author;
+    @NotNull
     private String category;
     private boolean available;
 
@@ -29,5 +33,12 @@ public class Book {
 
     public Book(int bookID) {
         this.id = bookID;
+    }
+
+    //constructor made for tests
+    public Book(String title, String category, boolean available) {
+        this.title = title;
+        this.category = category;
+        this.available = available;
     }
 }

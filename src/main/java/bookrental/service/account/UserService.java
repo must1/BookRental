@@ -1,7 +1,6 @@
 package bookrental.service.account;
 
 import bookrental.model.account.User;
-import bookrental.model.book.Book;
 import bookrental.repository.account.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +18,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void createUser(User user) {
-        userRepository.save(user);
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
-    public void deleteAccount(int id) {
+    public User deleteAccount(int id) {
+        User bookToDelete = userRepository.findOne(id);
         userRepository.delete(id);
+        return bookToDelete;
     }
 
     public List<User> getAllUsers() {

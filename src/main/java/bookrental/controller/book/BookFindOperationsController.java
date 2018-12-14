@@ -1,9 +1,8 @@
 package bookrental.controller.book;
 
 import bookrental.model.book.Book;
-import bookrental.service.book.BookService;
+import bookrental.service.book.BookFindOperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,16 +10,11 @@ import java.util.List;
 @RestController
 public class BookFindOperationsController {
 
-    private final BookService bookService;
+    private final BookFindOperationsService bookService;
 
     @Autowired
-    public BookFindOperationsController(BookService bookService) {
+    public BookFindOperationsController(BookFindOperationsService bookService) {
         this.bookService = bookService;
-    }
-
-    @GetMapping("/books")
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
     }
 
     @GetMapping("/books/author/{authorID}")
