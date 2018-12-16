@@ -3,6 +3,7 @@ package bookrental.service.book.rentals;
 import bookrental.model.account.User;
 import bookrental.model.book.Book;
 import bookrental.model.book.BookRentals;
+import bookrental.repository.account.UserRepository;
 import bookrental.repository.book.BookRepository;
 import bookrental.repository.book.BookRentalsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,33 +15,39 @@ import java.util.List;
 @Service
 public class BookRentalService {
 
+    private final UserRepository userRepository;
     private final BookRepository bookRepository;
     private final BookRentalsRepository bookRentalsRepository;
 
     @Autowired
-    public BookRentalService(BookRepository bookRepository, BookRentalsRepository bookRentalsRepository) {
+    public BookRentalService(BookRepository bookRepository, BookRentalsRepository bookRentalsRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.bookRentalsRepository = bookRentalsRepository;
+        this.userRepository = userRepository;
     }
 
-    public void rentBook(int userID, int bookID) {
-        if (bookRepository.doesBookExistsWithGivenID(bookID)) {
-            Book bookToRent = bookRepository.findOne(bookID);
-            if (bookToRent.isAvailable()) {
-                updateBookAvailabilityAndSaveToDb(bookToRent);
-                BookRentals preparedBookToRent = prepareBookToRent(userID, bookID);
-                bookRentalsRepository.save(preparedBookToRent);
+    public String rentBook(int userID, int bookID) {
+        if (userRepository.doesAccountExistsWithGivenID(userID)) {
+            if (bookRepository.doesBookExistsWithGivenID(bookID)) {
+                Book bookToRent = bookRepository.findOne(bookID);
+                if (bookToRent.isAvailable()) {
+                    updateBookAvailabilityAndSaveToDb(bookToRent);
+                    BookRentals preparedBookToRent = prepareBookToRent(userID, bookToRent);
+                    bookRentalsRepository.save(preparedBookToRent);
+                } else {
+                    throw new IllegalArgumentException("Book is not available");
+                }
             } else {
-                throw new IllegalArgumentException("Book is no available");
+                throw new IllegalArgumentException("Book does not exist!");
             }
         } else {
-            throw new IllegalArgumentException("Book does not exist!");
+            throw new IllegalArgumentException("Account does not exist!");
         }
+        return "Book was rented";
     }
 
-
-    private BookRentals prepareBookToRent(int userID, int bookID) {
-        return new BookRentals(new Book(bookID), new User(userID));
+    private BookRentals prepareBookToRent(int userID, Book book) {
+        return new BookRentals(book, new User(userID));
     }
 
     private void updateBookAvailabilityAndSaveToDb(Book bookToRent) {

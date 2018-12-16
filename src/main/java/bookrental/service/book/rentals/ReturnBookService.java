@@ -1,8 +1,6 @@
 package bookrental.service.book.rentals;
 
-import bookrental.model.account.User;
 import bookrental.model.book.Book;
-import bookrental.model.book.BookRentals;
 import bookrental.repository.book.BookRentalsRepository;
 import bookrental.repository.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ public class ReturnBookService {
         this.bookRepository = bookRepository;
     }
 
-    public void returnBook(int userID, int bookID) {
+    public String returnBook(int userID, int bookID) {
         if (bookRentalsRepository.isBookRentedWithGivenIDByUserWithGivenID(bookID, userID)) {
             Book bookToReturn = bookRepository.findOne(bookID);
             updateBookAvailabilityAndSaveToDb(bookToReturn);
@@ -27,6 +25,7 @@ public class ReturnBookService {
         } else {
             throw new IllegalArgumentException("Book was not rented!");
         }
+        return "Book was returned";
     }
 
     private void updateBookAvailabilityAndSaveToDb(Book bookToReturn) {

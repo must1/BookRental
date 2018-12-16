@@ -30,15 +30,4 @@ public class Book {
         this.category = category;
         this.available = available;
     }
-
-    public Book(int bookID) {
-        this.id = bookID;
-    }
-
-    //constructor made for tests
-    public Book(String title, String category, boolean available) {
-        this.title = title;
-        this.category = category;
-        this.available = available;
-    }
 }

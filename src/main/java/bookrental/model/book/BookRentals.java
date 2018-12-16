@@ -11,6 +11,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class BookRentals {
 
     @Id

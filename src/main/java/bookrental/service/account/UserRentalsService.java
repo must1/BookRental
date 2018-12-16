@@ -1,6 +1,5 @@
 package bookrental.service.account;
 
-
 import bookrental.model.book.BookRentals;
 import bookrental.repository.book.BookRentalsRepository;
 import org.springframework.beans.factory.annotation.Autowired;

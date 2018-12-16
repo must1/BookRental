@@ -21,8 +21,8 @@ public class BookRentalController {
     }
 
     @PostMapping("/books/rent")
-    public void rentBook(@RequestParam("userID") int userID, @RequestParam("bookID") int bookID) {
-        bookRentalService.rentBook(userID, bookID);
+    public String rentBook(@RequestParam("userID") int userID, @RequestParam("bookID") int bookID) {
+        return bookRentalService.rentBook(userID, bookID);
     }
 
     @GetMapping("/books/rentals")
