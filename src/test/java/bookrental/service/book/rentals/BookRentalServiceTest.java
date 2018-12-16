@@ -39,7 +39,6 @@ public class BookRentalServiceTest {
         when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(true);
         when(bookRepository.findOne(book.getId())).thenReturn(book);
         when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(true);
-        when(userRepository.findOne(user.getId())).thenReturn(user);
 
         String expected = "Book was rented";
 
@@ -48,8 +47,32 @@ public class BookRentalServiceTest {
         verify(bookRentalsRepository, times(1)).save((BookRentals) any());
     }
 
-    @Test
-    public void findAllRentals() {
+    @Test(expected = IllegalArgumentException.class)
+    public void rentBookWhenBookNotExist() {
+        Book book = createDummyBook();
+        User user = createDummyUser();
+
+        when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(false);
+        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(true);
+
+        String expected = "Book does not exist";
+
+        assertEquals(expected, bookRentalService.rentBook(user.getId(), book.getId()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rentBookWhenAccountNotExists() {
+        Book book = createDummyBook();
+        User user = createDummyUser();
+
+        when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(true);
+        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(false);
+
+        String expected = "Account does not exist";
+
+        assertEquals(expected, bookRentalService.rentBook(user.getId(), book.getId()));
     }
 
     private Book createDummyBook() {

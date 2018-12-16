@@ -45,6 +45,19 @@ public class ReturnBookServiceTest {
         verify(bookRentalsRepository, times(1)).delete(book.getId());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void returnBookWhenBookIsNotRented() {
+        Book book = createDummyBook();
+        User user = createDummyUser();
+
+        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(bookRentalsRepository.isBookRentedWithGivenIDByUserWithGivenID(book.getId(), user.getId())).thenReturn(false);
+
+        String expected = "Book was not returned";
+
+        assertEquals(expected, returnBookService.returnBook(user.getId(), book.getId()));
+    }
+
     private Book createDummyBook() {
         return new Book(1, "W pustyni i w puszczy", "Henryk Sienkiewicz", "dramat", true);
     }
