@@ -6,9 +6,14 @@ import bookrental.model.book.BookRentals;
 import bookrental.repository.account.UserRepository;
 import bookrental.repository.book.BookRepository;
 import bookrental.repository.book.BookRentalsRepository;
+import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +34,7 @@ public class BookRentalService {
     public String rentBook(int userID, int bookID) {
         if (userRepository.doesAccountExistsWithGivenID(userID)) {
             if (bookRepository.doesBookExistsWithGivenID(bookID)) {
-                Book bookToRent = bookRepository.findOne(bookID);
+                Book bookToRent = bookRepository.findById(bookID).orElse(null);
                 if (bookToRent.isAvailable()) {
                     updateBookAvailabilityAndSaveToDb(bookToRent);
                     BookRentals preparedBookToRent = prepareBookToRent(userID, bookToRent);
@@ -47,7 +52,9 @@ public class BookRentalService {
     }
 
     private BookRentals prepareBookToRent(int userID, Book book) {
-        return new BookRentals(book, new User(userID));
+        BookRentals bookRentals = new BookRentals(book, new User(userID));
+        bookRentals.setDateOfRental(LocalDateTime.now());
+        return bookRentals;
     }
 
     private void updateBookAvailabilityAndSaveToDb(Book bookToRent) {
@@ -55,10 +62,15 @@ public class BookRentalService {
         bookRepository.save(bookToRent);
     }
 
-    public List<BookRentals> findAllRentals() {
+    public ResponseEntity<String> findAllRentals() {
         List<BookRentals> rentedBooks = new ArrayList<>();
         bookRentalsRepository.findAll().forEach(rentedBooks::add);
-        return rentedBooks;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<>(new JSONSerializer().exclude("book.class")
+                .exclude("book.available")
+                .exclude("*.class")
+                .serialize(rentedBooks), headers, HttpStatus.OK);
     }
 }
 

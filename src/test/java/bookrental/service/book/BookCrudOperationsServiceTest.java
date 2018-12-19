@@ -20,10 +20,10 @@ import static org.mockito.Mockito.when;
 public class BookCrudOperationsServiceTest {
 
     @Mock
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
 
     @InjectMocks
-    BookCrudOperationsService bookCrudOperationsService;
+    private BookCrudOperationsService bookCrudOperationsService;
 
     private Book createDummyBook() {
         return new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "dramat", true);
@@ -46,7 +46,7 @@ public class BookCrudOperationsServiceTest {
 
         bookCrudOperationsService.deleteBook(book.getId());
 
-        verify(bookRepository, times(1)).delete(book.getId());
+        verify(bookRepository, times(1)).deleteById(book.getId());
     }
 
     @Test

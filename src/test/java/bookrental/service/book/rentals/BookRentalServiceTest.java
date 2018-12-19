@@ -10,10 +10,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -37,7 +37,7 @@ public class BookRentalServiceTest {
         User user = createDummyUser();
 
         when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(true);
-        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(bookRepository.findById(book.getId()).orElse(null)).thenReturn(book);
         when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(true);
 
         String expected = "Book was rented";
@@ -53,7 +53,7 @@ public class BookRentalServiceTest {
         User user = createDummyUser();
 
         when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(false);
-        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(bookRepository.findById(book.getId()).orElse(null)).thenReturn(book);
         when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(true);
 
         String expected = "Book does not exist";
@@ -67,7 +67,7 @@ public class BookRentalServiceTest {
         User user = createDummyUser();
 
         when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(true);
-        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(bookRepository.findById(book.getId()).orElse(null)).thenReturn(book);
         when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(false);
 
         String expected = "Account does not exist";

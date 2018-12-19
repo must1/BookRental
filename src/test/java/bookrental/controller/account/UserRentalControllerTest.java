@@ -32,10 +32,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserRentalControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @MockBean
-    UserRentalsService userRentalsService;
+    private UserRentalsService userRentalsService;
 
     @Test
     public void findUserRentalsByGivenID() throws Exception {

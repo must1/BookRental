@@ -29,10 +29,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class BookFindOperationsControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @MockBean
-    BookFindOperationsService bookService;
+    private BookFindOperationsService bookService;
 
     @Test
     public void findBooksByAuthor() throws Exception {

@@ -4,6 +4,7 @@ import bookrental.model.account.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -11,16 +12,16 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class BookRentals {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
     private Book book;
     @OneToOne
     private User user;
+    private LocalDateTime dateOfRental;
 
     public BookRentals(Book book, User user) {
         this.book = book;

@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,10 @@ import static org.mockito.Mockito.when;
 public class BookFindOperationsServiceTest {
 
     @Mock
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
 
     @InjectMocks
-    BookFindOperationsService bookFindOperationsService;
+    private BookFindOperationsService bookFindOperationsService;
 
     @Test
     public void findBooksByAuthor() {

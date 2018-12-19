@@ -23,8 +23,8 @@ public class BookCrudOperationsService {
     }
 
     public Book deleteBook(int id) {
-        Book bookToDelete = bookRepository.findOne(id);
-        bookRepository.delete(id);
+        Book bookToDelete = bookRepository.findById(id).orElse(null);
+        bookRepository.deleteById(id);
         return bookToDelete;
     }
 

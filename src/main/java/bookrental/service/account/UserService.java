@@ -23,8 +23,8 @@ public class UserService {
     }
 
     public User deleteAccount(int id) {
-        User bookToDelete = userRepository.findOne(id);
-        userRepository.delete(id);
+        User bookToDelete = userRepository.findById(id).orElse(null);
+        userRepository.deleteById(id);
         return bookToDelete;
     }
 

@@ -36,13 +36,13 @@ public class ReturnBookServiceTest {
         Book book = createDummyBook();
         User user = createDummyUser();
 
-        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(bookRepository.findById(book.getId()).orElse(null)).thenReturn(book);
         when(bookRentalsRepository.isBookRentedWithGivenIDByUserWithGivenID(book.getId(), user.getId())).thenReturn(true);
 
         String expected = "Book was returned";
 
         assertEquals(expected, returnBookService.returnBook(user.getId(), book.getId()));
-        verify(bookRentalsRepository, times(1)).delete(book.getId());
+        verify(bookRentalsRepository, times(1)).deleteById(book.getId());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -50,7 +50,7 @@ public class ReturnBookServiceTest {
         Book book = createDummyBook();
         User user = createDummyUser();
 
-        when(bookRepository.findOne(book.getId())).thenReturn(book);
+        when(bookRepository.findById(book.getId()).orElse(null)).thenReturn(book);
         when(bookRentalsRepository.isBookRentedWithGivenIDByUserWithGivenID(book.getId(), user.getId())).thenReturn(false);
 
         String expected = "Book was not returned";
