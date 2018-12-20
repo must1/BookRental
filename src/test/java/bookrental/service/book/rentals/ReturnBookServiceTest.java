@@ -2,7 +2,6 @@ package bookrental.service.book.rentals;
 
 import bookrental.model.account.User;
 import bookrental.model.book.Book;
-import bookrental.model.book.BookRentals;
 import bookrental.repository.account.UserRepository;
 import bookrental.repository.book.BookRentalsRepository;
 import bookrental.repository.book.BookRepository;
@@ -10,13 +9,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReturnBookServiceTest {
@@ -63,6 +60,6 @@ public class ReturnBookServiceTest {
     }
 
     private User createDummyUser() {
-        return new User(1, "must", "123");
+        return new User(1, "must", "123",0);
     }
 }

@@ -43,9 +43,9 @@ public class InitialData {
     public void addUserToDB() {
         log.info("Persisted user data to database");
         userRepository.save(
-                new User("admin", "123"));
+                new User("admin", "123", 0));
 
         userRepository.save(
-                new User("piotri", "123"));
+                new User("piotri", "123,", 0));
     }
 }

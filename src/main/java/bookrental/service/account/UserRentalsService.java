@@ -20,5 +20,4 @@ public class UserRentalsService {
     public List<BookRentals> findUserRentalsByGivenID(int userID) {
         return bookRentalsRepository.getUserRentalsByGivenID(userID);
     }
-
 }

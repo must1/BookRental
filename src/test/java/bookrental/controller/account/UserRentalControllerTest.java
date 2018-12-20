@@ -47,7 +47,7 @@ public class UserRentalControllerTest {
 
         when(userRentalsService.findUserRentalsByGivenID(bookToRent.getId())).thenReturn(books);
 
-        String expected = "[{\"id\":0,\"book\":{\"id\":0,\"title\":\"W pustyni i w puszczy\",\"author\":\"Henryk Sienkiewicz\",\"category\":\"dramat\",\"available\":true},\"user\":{\"id\":0,\"name\":\"must\",\"password\":\"123\"}}]";
+        String expected = "[{\"id\":0,\"book\":{\"id\":0,\"title\":\"W pustyni i w puszczy\",\"author\":\"Henryk Sienkiewicz\",\"category\":\"dramat\",\"available\":true},\"user\":{\"id\":0,\"name\":\"must\",\"password\":\"123\",\"amountOfCashToPay\":0},\"dateOfRental\":null}]";
 
         MvcResult mvcResult = mockMvc.perform(get("/books/rentals/0"))
                 .andExpect(status().isOk())
@@ -62,7 +62,7 @@ public class UserRentalControllerTest {
     }
 
     private User createDummyUser() {
-        return new User("must", "123");
+        return new User("must", "123",0);
     }
 
     private Book createDummyBook() {

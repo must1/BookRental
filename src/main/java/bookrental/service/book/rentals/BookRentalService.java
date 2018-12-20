@@ -32,9 +32,14 @@ public class BookRentalService {
     }
 
     public String rentBook(int userID, int bookID) {
-        if (userRepository.doesAccountExistsWithGivenID(userID)) {
+        User user = userRepository.findById(userID)
+                .orElseThrow(() -> new IllegalArgumentException("Account does not exist!"));
+
+        if (user.getAmountOfCashToPay() == 0) {
             if (bookRepository.doesBookExistsWithGivenID(bookID)) {
-                Book bookToRent = bookRepository.findById(bookID).orElse(null);
+                Book bookToRent = bookRepository.findById(bookID)
+                        .orElseThrow(() -> new IllegalArgumentException("Book does not exist!"));
+
                 if (bookToRent.isAvailable()) {
                     updateBookAvailabilityAndSaveToDb(bookToRent);
                     BookRentals preparedBookToRent = prepareBookToRent(userID, bookToRent);
@@ -42,12 +47,11 @@ public class BookRentalService {
                 } else {
                     throw new IllegalArgumentException("Book is not available");
                 }
-            } else {
-                throw new IllegalArgumentException("Book does not exist!");
             }
         } else {
-            throw new IllegalArgumentException("Account does not exist!");
+            throw new IllegalArgumentException("Please go to paypenalty/userID to settle the arrears, otherwise you can not rent more books!");
         }
+
         return "Book was rented";
     }
 
@@ -67,9 +71,13 @@ public class BookRentalService {
         bookRentalsRepository.findAll().forEach(rentedBooks::add);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        return new ResponseEntity<>(new JSONSerializer().exclude("book.class")
+        return new ResponseEntity<>(new JSONSerializer()
+                .exclude("book.class")
                 .exclude("book.available")
+                .exclude("dateOfReturn")
                 .exclude("*.class")
+                .exclude("user.amountOfCashToPay")
+                .exclude("password")
                 .serialize(rentedBooks), headers, HttpStatus.OK);
     }
 }

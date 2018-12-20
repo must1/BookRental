@@ -36,7 +36,7 @@ public class UserControllerTest {
 
         when(userService.createUser(newUser)).thenReturn(newUser);
 
-        String expected = "{\"id\":0,\"name\":\"must\",\"password\":\"123\"}";
+        String expected = "{\"id\":0,\"name\":\"must\",\"password\":\"123\",\"amountOfCashToPay\":0}";
 
         MvcResult mvcResult = mockMvc.perform(post("/user")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -58,7 +58,7 @@ public class UserControllerTest {
 
         when(userService.deleteAccount(newUser.getId())).thenReturn(newUser);
 
-        String expected = "{\"id\":0,\"name\":\"must\",\"password\":\"123\"}";
+        String expected = "{\"id\":0,\"name\":\"must\",\"password\":\"123\",\"amountOfCashToPay\":0}";
 
         MvcResult mvcResult = mockMvc.perform(delete("/user")
                 .param("id", String.valueOf(0)))
@@ -74,6 +74,6 @@ public class UserControllerTest {
     }
 
     private User createDummyUser() {
-        return new User(0, "must", "123");
+        return new User(0, "must", "123",0);
     }
 }

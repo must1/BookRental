@@ -2,7 +2,6 @@ package bookrental.service.book.rentals;
 
 import bookrental.model.account.User;
 import bookrental.model.book.Book;
-import bookrental.model.book.BookRentals;
 import bookrental.repository.account.UserRepository;
 import bookrental.repository.book.BookRentalsRepository;
 import bookrental.repository.book.BookRepository;
@@ -44,7 +43,7 @@ public class BookRentalServiceTest {
 
         assertEquals(expected, bookRentalService.rentBook(user.getId(), book.getId()));
 
-        verify(bookRentalsRepository, times(1)).save((BookRentals) any());
+        verify(bookRentalsRepository, times(1)).save(any());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -80,6 +79,6 @@ public class BookRentalServiceTest {
     }
 
     private User createDummyUser() {
-        return new User(1, "must", "123");
+        return new User(1, "must", "123",1);
     }
 }
