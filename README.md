@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b66869d2515d4ac69321c644fd6af427)](https://www.codacy.com/app/must1/BookRental?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=must1/BookRental&amp;utm_campaign=Badge_Grade)
+
 # BookRental
 CRUD App based on SpringBoot
 
