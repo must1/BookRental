@@ -5,7 +5,6 @@ import bookrental.model.book.Book;
 import bookrental.repository.account.AccountRepository;
 import bookrental.repository.book.BookRentalsRepository;
 import bookrental.repository.book.BookRepository;
-import bookrental.service.account.AccountService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -11,8 +11,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -21,10 +19,10 @@ import static org.mockito.Mockito.when;
 public class PenaltyPaymentServiceTest {
 
     @Mock
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     @InjectMocks
-    PenaltyPaymentService paymentService;
+    private PenaltyPaymentService paymentService;
 
     @Test
     public void payPenaltyWith0AmountToPay() {
