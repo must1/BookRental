@@ -10,22 +10,19 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReturnBookServiceTest {
 
     @Mock
-    BookRentalsRepository bookRentalsRepository;
+    private BookRentalsRepository bookRentalsRepository;
     @Mock
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
     @Mock
-    AccountRepository userRepository;
+    private AccountRepository userRepository;
 
     @InjectMocks
     ReturnBookService returnBookService;

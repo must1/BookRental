@@ -1,7 +1,6 @@
 package bookrental.model.book;
 
 import bookrental.model.account.Account;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 

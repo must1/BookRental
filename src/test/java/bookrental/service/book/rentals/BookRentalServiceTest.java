@@ -21,14 +21,14 @@ import static org.mockito.Mockito.*;
 public class BookRentalServiceTest {
 
     @Mock
-    BookRentalsRepository bookRentalsRepository;
+    private BookRentalsRepository bookRentalsRepository;
     @Mock
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
     @Mock
-    AccountRepository userRepository;
+    private AccountRepository userRepository;
 
     @InjectMocks
-    BookRentalService bookRentalService;
+    private BookRentalService bookRentalService;
 
     @Test
     public void rentBook() {
