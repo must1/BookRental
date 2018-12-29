@@ -16,8 +16,8 @@ public class PenaltyController {
         this.penaltyPaymentService = penaltyPaymentService;
     }
 
-    @PutMapping("paypenalty/{userID}")
-    public String payPenalty(@PathVariable int userID) {
-        return penaltyPaymentService.payPenalty(userID);
+    @PutMapping("paypenalty/{accountID}")
+    public String payPenalty(@PathVariable int accountID) {
+        return penaltyPaymentService.payPenalty(accountID);
     }
 }

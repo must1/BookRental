@@ -1,7 +1,7 @@
 package bookrental.controller.account;
 
-import bookrental.model.account.User;
-import bookrental.service.account.UserService;
+import bookrental.model.account.Account;
+import bookrental.service.account.AccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;
@@ -21,24 +21,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
-public class UserControllerTest {
+@WebMvcTest(AccountController.class)
+public class AccountControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
+    private AccountService accountService;
 
     @Test
     public void createUser() throws Exception {
-        User newUser = createDummyUser();
+        Account newUser = createDummyAccount();
 
-        when(userService.createUser(newUser)).thenReturn(newUser);
+        when(accountService.createAccount(newUser)).thenReturn(newUser);
 
         String expected = "{\"id\":0,\"name\":\"must\",\"password\":\"123\",\"amountOfCashToPay\":0}";
 
-        MvcResult mvcResult = mockMvc.perform(post("/user")
+        MvcResult mvcResult = mockMvc.perform(post("/account")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(newUser)))
                 .andExpect(status().isOk())
@@ -49,18 +49,18 @@ public class UserControllerTest {
 
         assertEquals(expected, actual);
 
-        verify(userService, times(1)).createUser(newUser);
+        verify(accountService, times(1)).createAccount(newUser);
     }
 
     @Test
     public void deleteAccount() throws Exception {
-        User newUser = createDummyUser();
+        Account newUser = createDummyAccount();
 
-        when(userService.deleteAccount(newUser.getId())).thenReturn(newUser);
+        when(accountService.deleteAccount(newUser.getId())).thenReturn(newUser);
 
         String expected = "{\"id\":0,\"name\":\"must\",\"password\":\"123\",\"amountOfCashToPay\":0}";
 
-        MvcResult mvcResult = mockMvc.perform(delete("/user")
+        MvcResult mvcResult = mockMvc.perform(delete("/account")
                 .param("id", String.valueOf(0)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -70,10 +70,10 @@ public class UserControllerTest {
 
         assertEquals(expected, actual);
 
-        verify(userService, times(1)).deleteAccount(newUser.getId());
+        verify(accountService, times(1)).deleteAccount(newUser.getId());
     }
 
-    private User createDummyUser() {
-        return new User(0, "must", "123",0);
+    private Account createDummyAccount() {
+        return new Account(0, "must", "123",0);
     }
 }

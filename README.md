@@ -7,8 +7,9 @@ It is aplication based on SpringBoot. It is intended to manage everyday tasks.
 Application contains:
 - managing accounts (CRUD)
 - managing books (CRUD)
-- 4 options of finding books
+- 4 options of finding books + finding the latest 3 books
 - renting/returning books
+- penalty system - 1 minute is free, next minutes are paid. 1min = 1$
 
 
 ### Technologies that have been used:
@@ -20,4 +21,4 @@ Application contains:
 - Mockito
 - Lombok
 - Slf4j
-- H2
+- PostgreSQL

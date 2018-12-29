@@ -5,6 +5,7 @@ import bookrental.repository.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class BookCrudOperationsService {
     }
 
     public Book createBook(Book newBook) {
+        newBook.setAvailable(true);
+        newBook.setDateOfCreation(LocalDateTime.now());
         return bookRepository.save(newBook);
     }
 

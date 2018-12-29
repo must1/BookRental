@@ -12,11 +12,11 @@ import java.util.Optional;
 @Repository
 public interface BookRentalsRepository extends CrudRepository<BookRentals, Integer> {
 
-    @Query("SELECT userRentals FROM BookRentals userRentals WHERE :userID = userRentals.user.id")
-    List<BookRentals> getUserRentalsByGivenID(@Param("userID") int userID);
+    @Query("SELECT accountRentals FROM BookRentals accountRentals WHERE :accountID = accountRentals.account.id")
+    List<BookRentals> getAccountRentalsByGivenID(@Param("accountID") int accountID);
 
-    @Query("SELECT CASE WHEN COUNT(rentedBook) > 0 THEN true ELSE false END FROM BookRentals rentedBook WHERE ((rentedBook.book.id=:bookID) AND  (rentedBook.user.id=:userID))")
-    boolean isBookRentedWithGivenIDByUserWithGivenID(@Param("bookID") int bookID, @Param("userID") int userID);
+    @Query("SELECT CASE WHEN COUNT(rentedBook) > 0 THEN true ELSE false END FROM BookRentals rentedBook WHERE ((rentedBook.book.id=:bookID) AND  (rentedBook.account.id=:accountID))")
+    boolean isBookRentedWithGivenIDByAccountWithGivenID(@Param("bookID") int bookID, @Param("accountID") int accountID);
 
     @Query("SELECT rentedBook FROM BookRentals rentedBook WHERE rentedBook.book.id =:bookID")
     BookRentals getBookBybBookID(@Param("bookID") int bookID);

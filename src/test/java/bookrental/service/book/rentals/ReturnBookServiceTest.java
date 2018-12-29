@@ -1,8 +1,8 @@
 package bookrental.service.book.rentals;
 
-import bookrental.model.account.User;
+import bookrental.model.account.Account;
 import bookrental.model.book.Book;
-import bookrental.repository.account.UserRepository;
+import bookrental.repository.account.AccountRepository;
 import bookrental.repository.book.BookRentalsRepository;
 import bookrental.repository.book.BookRepository;
 import org.junit.Test;
@@ -15,6 +15,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 @RunWith(MockitoJUnitRunner.class)
 public class ReturnBookServiceTest {
 
@@ -23,7 +25,7 @@ public class ReturnBookServiceTest {
     @Mock
     BookRepository bookRepository;
     @Mock
-    UserRepository userRepository;
+    AccountRepository userRepository;
 
     @InjectMocks
     ReturnBookService returnBookService;
@@ -31,10 +33,10 @@ public class ReturnBookServiceTest {
     @Test
     public void returnBook() {
         Book book = createDummyBook();
-        User user = createDummyUser();
+        Account user = createDummyUser();
 
-        when(bookRepository.findById(book.getId()).orElse(null)).thenReturn(book);
-        when(bookRentalsRepository.isBookRentedWithGivenIDByUserWithGivenID(book.getId(), user.getId())).thenReturn(true);
+        when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
+        when(bookRentalsRepository.isBookRentedWithGivenIDByAccountWithGivenID(book.getId(), user.getId())).thenReturn(true);
 
         String expected = "Book was returned";
 
@@ -45,10 +47,10 @@ public class ReturnBookServiceTest {
     @Test(expected = IllegalArgumentException.class)
     public void returnBookWhenBookIsNotRented() {
         Book book = createDummyBook();
-        User user = createDummyUser();
+        Account user = createDummyUser();
 
-        when(bookRepository.findById(book.getId()).orElse(null)).thenReturn(book);
-        when(bookRentalsRepository.isBookRentedWithGivenIDByUserWithGivenID(book.getId(), user.getId())).thenReturn(false);
+        when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
+        when(bookRentalsRepository.isBookRentedWithGivenIDByAccountWithGivenID(book.getId(), user.getId())).thenReturn(false);
 
         String expected = "Book was not returned";
 
@@ -59,7 +61,7 @@ public class ReturnBookServiceTest {
         return new Book(1, "W pustyni i w puszczy", "Henryk Sienkiewicz", "dramat", true);
     }
 
-    private User createDummyUser() {
-        return new User(1, "must", "123",0);
+    private Account createDummyUser() {
+        return new Account(1, "must", "123",0);
     }
 }

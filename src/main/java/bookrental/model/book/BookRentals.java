@@ -1,6 +1,6 @@
 package bookrental.model.book;
 
-import bookrental.model.account.User;
+import bookrental.model.account.Account;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -22,15 +22,14 @@ public class BookRentals {
     @OneToOne
     private Book book;
     @OneToOne
-    private User user;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Account account;
     private LocalDateTime dateOfRental;
     @JsonIgnore
     private LocalDateTime dateOfReturn;
 
-    public BookRentals(Book book, User user) {
+    public BookRentals(Book book, Account account) {
         this.book = book;
-        this.user = user;
+        this.account = account;
     }
 }
 

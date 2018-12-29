@@ -1,9 +1,9 @@
 package bookrental.controller.account;
 
-import bookrental.model.account.User;
+import bookrental.model.account.Account;
 import bookrental.model.book.Book;
 import bookrental.model.book.BookRentals;
-import bookrental.service.account.UserRentalsService;
+import bookrental.service.account.AccountRentalsService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,26 +28,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserRentalsController.class)
-public class UserRentalControllerTest {
+@WebMvcTest(AccountRentalsController.class)
+public class AccountRentalControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserRentalsService userRentalsService;
+    private AccountRentalsService userRentalsService;
 
     @Test
     public void findUserRentalsByGivenID() throws Exception {
         List<BookRentals> books = new ArrayList<>();
-        User user = createDummyUser();
+        Account user = createDummyUser();
         Book book = createDummyBook();
         BookRentals bookToRent = new BookRentals(book, user);
         books.add(bookToRent);
 
-        when(userRentalsService.findUserRentalsByGivenID(bookToRent.getId())).thenReturn(books);
+        when(userRentalsService.findAccountRentalsByGivenID(bookToRent.getId())).thenReturn(books);
 
-        String expected = "[{\"id\":0,\"book\":{\"id\":0,\"title\":\"W pustyni i w puszczy\",\"author\":\"Henryk Sienkiewicz\",\"category\":\"dramat\",\"available\":true},\"user\":{\"id\":0,\"name\":\"must\",\"password\":\"123\",\"amountOfCashToPay\":0},\"dateOfRental\":null}]";
+        String expected = "[{\"id\":0,\"book\":{\"id\":0,\"title\":\"W pustyni i w puszczy\",\"author\":\"Henryk Sienkiewicz\",\"category\":\"dramat\",\"available\":true},\"account\":{\"id\":0,\"name\":\"must\",\"password\":\"123\",\"amountOfCashToPay\":0},\"dateOfRental\":null}]";
 
         MvcResult mvcResult = mockMvc.perform(get("/books/rentals/0"))
                 .andExpect(status().isOk())
@@ -58,11 +58,11 @@ public class UserRentalControllerTest {
 
         assertEquals(expected, content);
 
-        verify(userRentalsService, times(1)).findUserRentalsByGivenID(user.getId());
+        verify(userRentalsService, times(1)).findAccountRentalsByGivenID(user.getId());
     }
 
-    private User createDummyUser() {
-        return new User("must", "123",0);
+    private Account createDummyUser() {
+        return new Account("must", "123",0);
     }
 
     private Book createDummyBook() {

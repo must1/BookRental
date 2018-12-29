@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserRentalsService {
+public class AccountRentalsService {
 
     private final BookRentalsRepository bookRentalsRepository;
 
     @Autowired
-    public UserRentalsService(BookRentalsRepository bookRentalsRepository) {
+    public AccountRentalsService(BookRentalsRepository bookRentalsRepository) {
         this.bookRentalsRepository = bookRentalsRepository;
     }
 
-    public List<BookRentals> findUserRentalsByGivenID(int userID) {
-        return bookRentalsRepository.getUserRentalsByGivenID(userID);
+    public List<BookRentals> findAccountRentalsByGivenID(int accountID) {
+        return bookRentalsRepository.getAccountRentalsByGivenID(accountID);
     }
 }

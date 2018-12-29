@@ -31,4 +31,8 @@ public class BookFindOperationsService {
     public List<Book> findAllByTitleAndAuthorAndCategoryIgnoreCase(String titleID, String authorID, String categoryID) {
         return bookRepository.findAllByTitleAndAuthorAndCategoryIgnoreCase(titleID, authorID, categoryID);
     }
+
+    public List<Book> findTheLatest3Books() {
+        return bookRepository.findFirst3ByOrderByDateOfCreation();
+    }
 }

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,13 +19,13 @@ public class User {
     private String password;
     private long amountOfCashToPay;
 
-    public User(String name, String password, long amountOfCashToPay) {
+    public Account(String name, String password, long amountOfCashToPay) {
         this.name = name;
         this.password = password;
         this.amountOfCashToPay = amountOfCashToPay;
     }
 
-    public User(int userID) {
-        this.id = userID;
+    public Account(int accountID) {
+        this.id = accountID;
     }
 }

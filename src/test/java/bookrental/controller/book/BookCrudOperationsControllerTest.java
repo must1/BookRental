@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,6 +122,6 @@ public class BookCrudOperationsControllerTest {
     }
 
     private Book createDummyBook() {
-        return new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "dramat", true);
+        return new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "dramat", LocalDateTime.now(), true);
     }
 }

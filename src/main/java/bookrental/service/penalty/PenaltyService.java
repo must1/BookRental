@@ -1,6 +1,6 @@
 package bookrental.service.penalty;
 
-import bookrental.model.account.User;
+import bookrental.model.account.Account;
 import bookrental.model.book.BookRentals;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class PenaltyService {
         return amountOfCashToPay;
     }
 
-    public void executePenaltyProcess(BookRentals bookToReturn, User user) {
+    public void executePenaltyProcess(BookRentals bookToReturn, Account user) {
         if (checkIfPenaltyIsNeeded(bookToReturn)) {
             long amountOfCashToPay = calculatePenalty();
             log.info("You need to pay: {} $. Please go to paypenalty/userID to settle the arrears, " +

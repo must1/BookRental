@@ -1,9 +1,7 @@
 package bookrental.service.book.rentals;
 
-import bookrental.model.account.User;
-import bookrental.model.book.Book;
 import bookrental.model.book.BookRentals;
-import bookrental.repository.account.UserRepository;
+import bookrental.repository.account.AccountRepository;
 import bookrental.repository.book.BookRentalsRepository;
 import bookrental.repository.book.BookRepository;
 import bookrental.service.penalty.PenaltyService;
@@ -16,23 +14,23 @@ import java.time.LocalDateTime;
 public class ReturnBookService {
     private final BookRentalsRepository bookRentalsRepository;
     private final BookRepository bookRepository;
-    private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
     private final PenaltyService penaltyCheckerService;
 
     @Autowired
-    public ReturnBookService(BookRentalsRepository bookRentalsRepository, BookRepository bookRepository, UserRepository userRepository, PenaltyService penaltyCheckerService) {
+    public ReturnBookService(BookRentalsRepository bookRentalsRepository, BookRepository bookRepository, AccountRepository accountRepository, PenaltyService penaltyCheckerService) {
         this.bookRentalsRepository = bookRentalsRepository;
         this.bookRepository = bookRepository;
-        this.userRepository = userRepository;
+        this.accountRepository = accountRepository;
         this.penaltyCheckerService = penaltyCheckerService;
     }
 
-    public String returnBook(int userID, int bookID) {
-        if (bookRentalsRepository.isBookRentedWithGivenIDByUserWithGivenID(bookID, userID)) {
+    public String returnBook(int accountID, int bookID) {
+        if (bookRentalsRepository.isBookRentedWithGivenIDByAccountWithGivenID(bookID, accountID)) {
             BookRentals bookToReturn = bookRentalsRepository.getBookBybBookID(bookID);
-            userRepository.findById(userID).ifPresent(user -> {
+            accountRepository.findById(accountID).ifPresent(account -> {
                 BookRentals preparedBookToReturn = prepareBookToReturn(bookToReturn);
-                penaltyCheckerService.executePenaltyProcess(bookToReturn, user);
+                penaltyCheckerService.executePenaltyProcess(bookToReturn, account);
                 updateBookAvailabilityAndSaveToDb(bookID);
                 bookRentalsRepository.delete(preparedBookToReturn);
             });

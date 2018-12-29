@@ -17,8 +17,8 @@ public class ReturnBookController {
     }
 
     @DeleteMapping("books/return")
-    public String returnBook(@RequestParam("userID") int userID, @RequestParam("bookID") int bookID) {
-        return returnBookService.returnBook(userID, bookID);
+    public String returnBook(@RequestParam("accountID") int accountID, @RequestParam("bookID") int bookID) {
+        return returnBookService.returnBook(accountID, bookID);
     }
 }
 

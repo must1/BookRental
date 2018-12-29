@@ -36,4 +36,9 @@ public class BookFindOperationsController {
     public List<Book> findBooksByTitleAndAuthorAndCategory(@RequestParam(value = "titleID", required = false) String titleID, @RequestParam(value = "authorID", required = false) String authorID, @RequestParam(value = "categoryID", required = false) String categoryID) {
         return bookService.findAllByTitleAndAuthorAndCategoryIgnoreCase(titleID, authorID, categoryID);
     }
+
+    @GetMapping("/books/latestbooks")
+    public List<Book> findTheLatest3Books() {
+        return bookService.findTheLatest3Books();
+    }
 }

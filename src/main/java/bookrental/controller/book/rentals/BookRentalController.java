@@ -19,8 +19,8 @@ public class BookRentalController {
     }
 
     @PostMapping("/books/rent")
-    public String rentBook(@RequestParam("userID") int userID, @RequestParam("bookID") int bookID) {
-        return bookRentalService.rentBook(userID, bookID);
+    public String rentBook(@RequestParam("accountID") int accountID, @RequestParam("bookID") int bookID) {
+        return bookRentalService.rentBook(accountID, bookID);
     }
 
     @GetMapping(value = "/books/rentals", produces = "application/json")
