@@ -35,13 +35,11 @@ public class ReturnBookServiceTest {
         Book book = createDummyBook();
         Account user = createDummyUser();
 
-        when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
         when(bookRentalsRepository.isBookRentedWithGivenIDByAccountWithGivenID(book.getId(), user.getId())).thenReturn(true);
 
         String expected = "Book was returned";
 
         assertEquals(expected, returnBookService.returnBook(user.getId(), book.getId()));
-        verify(bookRentalsRepository, times(1)).deleteById(book.getId());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -49,7 +47,6 @@ public class ReturnBookServiceTest {
         Book book = createDummyBook();
         Account user = createDummyUser();
 
-        when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
         when(bookRentalsRepository.isBookRentedWithGivenIDByAccountWithGivenID(book.getId(), user.getId())).thenReturn(false);
 
         String expected = "Book was not returned";

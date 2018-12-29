@@ -5,6 +5,7 @@ import bookrental.model.book.Book;
 import bookrental.repository.account.AccountRepository;
 import bookrental.repository.book.BookRentalsRepository;
 import bookrental.repository.book.BookRepository;
+import bookrental.service.account.AccountService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,27 +22,28 @@ import static org.mockito.Mockito.*;
 public class BookRentalServiceTest {
 
     @Mock
-    public BookRentalsRepository bookRentalsRepository;
+    BookRentalsRepository bookRentalsRepository;
     @Mock
-    public BookRepository bookRepository;
+    BookRepository bookRepository;
     @Mock
-    public AccountRepository userRepository;
+    AccountRepository userRepository;
 
     @InjectMocks
-    public BookRentalService bookRentalService;
+    BookRentalService bookRentalService;
 
     @Test
     public void rentBook() {
         Book book = createDummyBook();
-        Account user = createDummyUser();
+        Account account = createDummyUser();
+        account.setAmountOfCashToPay(0);
 
         when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(true);
         when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
-        when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(true);
+        when(userRepository.findById(account.getId())).thenReturn(Optional.of(account));
 
         String expected = "Book was rented";
 
-        assertEquals(expected, bookRentalService.rentBook(user.getId(), book.getId()));
+        assertEquals(expected, bookRentalService.rentBook(account.getId(), book.getId()));
 
         verify(bookRentalsRepository, times(1)).save(any());
     }
@@ -51,25 +53,9 @@ public class BookRentalServiceTest {
         Book book = createDummyBook();
         Account user = createDummyUser();
 
-        when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(false);
-        when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
-        when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(true);
-
         String expected = "Book does not exist";
 
         assertEquals(expected, bookRentalService.rentBook(user.getId(), book.getId()));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void rentBookWhenAccountNotExists() {
-        Book book = createDummyBook();
-        Account user = createDummyUser();
-
-        when(bookRepository.doesBookExistsWithGivenID(book.getId())).thenReturn(true);
-        when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
-        when(userRepository.doesAccountExistsWithGivenID(user.getId())).thenReturn(false);
-
-        bookRentalService.rentBook(user.getId(), book.getId());
     }
 
     private Book createDummyBook() {

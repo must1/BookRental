@@ -16,18 +16,19 @@ public class PenaltyPaymentService {
     }
 
     public String payPenalty(int accountID) {
-        Account user = accountRepository.findById(accountID).orElse(null);
+        Account account = accountRepository.findById(accountID).orElse(null);
         if (accountRepository.doesAccountExistsWithGivenID(accountID)) {
-            long amountOfCashToPay = user.getAmountOfCashToPay();
+            assert account != null;
+            long amountOfCashToPay = account.getAmountOfCashToPay();
             if (amountOfCashToPay == 0) {
                 return "You have nothing to pay!";
             } else {
-                user.setAmountOfCashToPay(0);
-                accountRepository.save(user);
+                account.setAmountOfCashToPay(0);
+                accountRepository.save(account);
                 return "Thanks for paying! To next!";
             }
         } else {
-            return "Account does not exist";
+            throw new IllegalArgumentException("Account does not exist");
         }
     }
 }
