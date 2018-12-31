@@ -1,4 +1,4 @@
-package bookrental.penaltysystem;
+package bookrental.penalty;
 
 import bookrental.account.Account;
 import bookrental.account.AccountRepository;

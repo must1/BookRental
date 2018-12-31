@@ -1,5 +1,6 @@
-package bookrental.account;
+package bookrental.controllers;
 
+import bookrental.account.AccountRentalsService;
 import bookrental.bookrentals.BookRentals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

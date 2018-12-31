@@ -1,7 +1,7 @@
 package bookrental.controller.book;
 
 import bookrental.book.Book;
-import bookrental.book.BookCrudOperationsController;
+import bookrental.controllers.BookCrudOperationsController;
 import bookrental.book.BookCrudOperationsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;

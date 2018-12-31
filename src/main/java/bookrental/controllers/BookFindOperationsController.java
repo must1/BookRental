@@ -1,5 +1,7 @@
-package bookrental.book;
+package bookrental.controllers;
 
+import bookrental.book.Book;
+import bookrental.book.BookFindOperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

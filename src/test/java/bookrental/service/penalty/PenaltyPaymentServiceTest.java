@@ -2,7 +2,7 @@ package bookrental.service.penalty;
 
 import bookrental.account.Account;
 import bookrental.account.AccountRepository;
-import bookrental.penaltysystem.PenaltyPaymentService;
+import bookrental.penalty.PenaltyPaymentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
