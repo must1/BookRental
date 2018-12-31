@@ -1,6 +1,7 @@
-package bookrental.model.book;
+package bookrental.bookrentals;
 
-import bookrental.model.account.Account;
+import bookrental.account.Account;
+import bookrental.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -31,4 +32,3 @@ public class BookRentals {
         this.account = account;
     }
 }
-

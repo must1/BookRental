@@ -1,4 +1,4 @@
-package bookrental.model.book;
+package bookrental.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

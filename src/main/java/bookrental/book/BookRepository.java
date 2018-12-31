@@ -1,6 +1,6 @@
-package bookrental.repository.book;
+package bookrental.book;
 
-import bookrental.model.book.Book;
+import bookrental.book.Book;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

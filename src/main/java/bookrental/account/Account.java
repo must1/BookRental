@@ -1,4 +1,4 @@
-package bookrental.model.account;
+package bookrental.account;
 
 import lombok.*;
 

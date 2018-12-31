@@ -1,10 +1,11 @@
 package bookrental.service.book.rentals;
 
-import bookrental.model.account.Account;
-import bookrental.model.book.Book;
-import bookrental.repository.account.AccountRepository;
-import bookrental.repository.book.BookRentalsRepository;
-import bookrental.repository.book.BookRepository;
+import bookrental.account.Account;
+import bookrental.book.Book;
+import bookrental.account.AccountRepository;
+import bookrental.bookrentals.ReturnBookService;
+import bookrental.bookrentals.BookRentalsRepository;
+import bookrental.book.BookRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

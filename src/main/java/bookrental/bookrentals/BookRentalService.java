@@ -1,11 +1,10 @@
-package bookrental.service.book.rentals;
+package bookrental.bookrentals;
 
-import bookrental.model.account.Account;
+import bookrental.account.Account;
 import bookrental.model.book.Book;
 import bookrental.model.book.BookRentals;
-import bookrental.repository.account.AccountRepository;
-import bookrental.repository.book.BookRepository;
-import bookrental.repository.book.BookRentalsRepository;
+import bookrental.account.AccountRepository;
+import bookrental.book.BookRepository;
 import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

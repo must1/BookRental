@@ -1,7 +1,7 @@
-package bookrental.service.penalty;
+package bookrental.penaltysystem;
 
-import bookrental.model.account.Account;
-import bookrental.model.book.BookRentals;
+import bookrental.account.Account;
+import bookrental.bookrentals.BookRentals;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

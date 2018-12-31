@@ -1,7 +1,8 @@
 package bookrental.controller.account;
 
-import bookrental.model.account.Account;
-import bookrental.service.account.AccountService;
+import bookrental.account.AccountController;
+import bookrental.account.Account;
+import bookrental.account.AccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;

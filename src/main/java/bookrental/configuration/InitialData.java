@@ -1,8 +1,8 @@
 package bookrental.configuration;
 
-import bookrental.model.account.Account;
+import bookrental.account.Account;
 import bookrental.model.book.Book;
-import bookrental.repository.account.AccountRepository;
+import bookrental.account.AccountRepository;
 import bookrental.repository.book.BookRepository;
 import lombok.extern.slf4j.Slf4j;
 

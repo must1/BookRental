@@ -1,7 +1,7 @@
-package bookrental.service.penalty;
+package bookrental.penaltysystem;
 
-import bookrental.model.account.Account;
-import bookrental.repository.account.AccountRepository;
+import bookrental.account.Account;
+import bookrental.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

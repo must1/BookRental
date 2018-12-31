@@ -1,7 +1,7 @@
-package bookrental.service.account;
+package bookrental.account;
 
-import bookrental.model.book.BookRentals;
-import bookrental.repository.book.BookRentalsRepository;
+import bookrental.bookrentals.BookRentals;
+import bookrental.bookrentals.BookRentalsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

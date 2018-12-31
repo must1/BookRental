@@ -1,7 +1,5 @@
-package bookrental.controller.account;
+package bookrental.account;
 
-import bookrental.model.account.Account;
-import bookrental.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

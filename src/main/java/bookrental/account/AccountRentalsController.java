@@ -1,7 +1,6 @@
-package bookrental.controller.account;
+package bookrental.account;
 
-import bookrental.model.book.BookRentals;
-import bookrental.service.account.AccountRentalsService;
+import bookrental.bookrentals.BookRentals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

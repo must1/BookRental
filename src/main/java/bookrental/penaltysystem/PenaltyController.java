@@ -1,6 +1,6 @@
-package bookrental.controller.penalty;
+package bookrental.penaltysystem;
 
-import bookrental.service.penalty.PenaltyPaymentService;
+import bookrental.penaltysystem.PenaltyPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
