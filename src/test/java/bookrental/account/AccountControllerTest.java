@@ -1,4 +1,4 @@
-package bookrental.controller.account;
+package bookrental.account;
 
 import bookrental.account.AccountController;
 import bookrental.account.Account;

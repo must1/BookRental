@@ -1,9 +1,8 @@
 package bookrental.bookrentals;
 
 import bookrental.account.Account;
-import bookrental.model.book.Book;
-import bookrental.model.book.BookRentals;
 import bookrental.account.AccountRepository;
+import bookrental.book.Book;
 import bookrental.book.BookRepository;
 import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;

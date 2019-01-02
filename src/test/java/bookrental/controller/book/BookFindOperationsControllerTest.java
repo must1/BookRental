@@ -1,7 +1,9 @@
 package bookrental.controller.book;
 
-import bookrental.model.book.Book;
-import bookrental.service.book.BookFindOperationsService;
+
+import bookrental.book.Book;
+import bookrental.book.BookFindOperationsService;
+import bookrental.controllers.BookFindOperationsController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

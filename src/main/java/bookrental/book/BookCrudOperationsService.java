@@ -1,6 +1,5 @@
 package bookrental.book;
 
-import bookrental.model.book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

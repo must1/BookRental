@@ -1,10 +1,8 @@
-package bookrental.controller.account;
+package bookrental.account;
 
-import bookrental.account.AccountRentalsController;
-import bookrental.account.Account;
-import bookrental.model.book.Book;
-import bookrental.model.book.BookRentals;
-import bookrental.account.AccountRentalsService;
+import bookrental.book.Book;
+import bookrental.bookrentals.BookRentals;
+import bookrental.controllers.AccountRentalsController;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;

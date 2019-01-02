@@ -1,4 +1,4 @@
-package bookrental.service.book;
+package bookrental.book;
 
 import bookrental.book.Book;
 import bookrental.book.BookFindOperationsService;

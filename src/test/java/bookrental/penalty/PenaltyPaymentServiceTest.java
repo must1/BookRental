@@ -1,4 +1,4 @@
-package bookrental.service.penalty;
+package bookrental.penalty;
 
 import bookrental.account.Account;
 import bookrental.account.AccountRepository;

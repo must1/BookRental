@@ -1,9 +1,9 @@
-package bookrental.configuration;
+package bookrental.dataprovider;
 
 import bookrental.account.Account;
-import bookrental.model.book.Book;
 import bookrental.account.AccountRepository;
-import bookrental.repository.book.BookRepository;
+import bookrental.book.Book;
+import bookrental.book.BookRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;

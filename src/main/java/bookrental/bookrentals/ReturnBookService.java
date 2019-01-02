@@ -2,7 +2,7 @@ package bookrental.bookrentals;
 
 import bookrental.account.AccountRepository;
 import bookrental.book.BookRepository;
-import bookrental.penaltysystem.PenaltyService;
+import bookrental.penalty.PenaltyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
