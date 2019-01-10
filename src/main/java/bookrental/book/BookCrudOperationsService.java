@@ -24,7 +24,8 @@ public class BookCrudOperationsService {
     }
 
     public Book deleteBook(int id) {
-        Book bookToDelete = bookRepository.findById(id).orElse(null);
+        Book bookToDelete = bookRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Book does not exist!"));
         bookRepository.deleteById(id);
         return bookToDelete;
     }
