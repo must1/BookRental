@@ -23,7 +23,9 @@ public class BookRentalService {
     private final BookRentalsRepository bookRentalsRepository;
 
     @Autowired
-    public BookRentalService(BookRepository bookRepository, BookRentalsRepository bookRentalsRepository, AccountRepository accountRepository) {
+    public BookRentalService(BookRepository bookRepository,
+                             BookRentalsRepository bookRentalsRepository,
+                             AccountRepository accountRepository) {
         this.bookRepository = bookRepository;
         this.bookRentalsRepository = bookRentalsRepository;
         this.accountRepository = accountRepository;
@@ -47,7 +49,8 @@ public class BookRentalService {
                 }
             }
         } else {
-            throw new IllegalArgumentException("Please go to paypenalty/accountID to settle the arrears, otherwise you can not rent more books!");
+            throw new IllegalArgumentException("Please go to paypenalty/accountID to settle the arrears, " +
+                    "otherwise you can not rent more books!");
         }
 
         return "Book was rented";

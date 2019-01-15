@@ -25,16 +25,7 @@ public class Book {
     @NotNull
     private String category;
     private boolean available;
-    @JsonIgnore
     private LocalDateTime dateOfCreation;
-
-    public Book(String title, String author, String category, LocalDateTime dateOfCreation, boolean available) {
-        this.title = title;
-        this.author = author;
-        this.category = category;
-        this.dateOfCreation = dateOfCreation;
-        this.available = available;
-    }
 
     public Book(String title, String author, String category, boolean available) {
         this.title = title;
@@ -43,11 +34,13 @@ public class Book {
         this.available = available;
     }
 
+    public Book(String title, String author, String category, LocalDateTime dateOfCreation, boolean available) {
+        this(title, author, category, available);
+        this.dateOfCreation = dateOfCreation;
+    }
+
     public Book(int id, String title, String author, String category, boolean available) {
+        this(title, author, category, available);
         this.id = id;
-        this.title = title;
-        this.author = author;
-        this.category = category;
-        this.available = available;
     }
 }
