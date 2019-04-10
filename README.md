@@ -5,8 +5,7 @@ CRUD App based on SpringBoot
 
 ### About project:
 
-It is aplication based on SpringBoot. It is intended to manage everyday tasks.
-Application contains:
+It is aplication based on SpringBoot. Application contains:
 - managing accounts (CRUD)
 - managing books (CRUD)
 - 4 options of finding books + finding the latest 3 books
